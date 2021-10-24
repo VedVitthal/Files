@@ -1,0 +1,62 @@
+[package]
+name = "paru"
+version = "1.8.2"
+authors = ["morganamilo <morganamilo@archlinux.org>"]
+edition = "2018"
+
+description = "Aur helper and pacman wrapper"
+homepage = "http://github.com/Morganamilo/paru"
+repository = "http://github.com/Morganamilo/paru"
+documentation = "https://docs.rs/paru"
+license = "GPL-3.0"
+keywords = ["archlinux", "arch", "alpm", "pacman", "aur"]
+include = ["src/**/*", "LICENSE", "README.md", "CHANGELOG.md", "help"]
+
+
+[dependencies]
+alpm = "2.1.0"
+alpm-utils = "1.1.0"
+aur-depends = "1.0.1"
+aur-fetch = "0.9.1"
+cini = "0.1.1"
+pacmanconf = "1.0.0"
+raur = "5.0.1"
+srcinfo = "1.0.0"
+
+
+ansi_term = "0.12.1"
+anyhow = "1.0.42"
+atty = "0.2.14"
+chrono = "0.4.19"
+dirs = "3.0.2"
+futures = "0.3.16"
+globset = "0.4.8"
+htmlescape = "0.3.1"
+indicatif = "0.16.2"
+kuchiki = "0.8.1"
+nix = "0.22.0"
+reqwest = { version = "0.11.4", features = ["gzip"] }
+rss = { version = "1.10.0", default-features = false }
+serde = { version = "1.0.126", features = ["derive"] }
+serde_json = "1.0.66"
+smart-default = "0.6.0"
+tempfile = "3.2.0"
+term_size = "0.3.2"
+tokio = { version = "1.9.0", features = ["process", "macros", "rt-multi-thread"] }
+url = "2.2.2"
+env_logger = "0.9.0"
+log = "0.4.14"
+async-trait = { version = "0.1.51", optional = true }
+tr = "0.1.6"
+unicode-width = "0.1.8"
+
+[profile.release]
+codegen-units = 1
+lto = true
+
+[features]
+git = ["alpm/git", "alpm-utils/git", "aur-depends/git"]
+backtrace = []
+generate = ["alpm/generate"]
+static = ["alpm/static"]
+mock = ["async-trait"]
